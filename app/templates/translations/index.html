@@ -4,6 +4,14 @@
 
 {% block content %}
 
-<h1>TRANSLATIONS</h1>
+<div class="row">
+    <h1 class="mt-4">TRANSLATIONS</h1>
+</div>
+
+<div class="row mt-4">
+    <div class="col-4">
+        <a class="" href="{{ url_for ('translations.create_dataset') }}">Create dataset(file) for translation</a>
+    </div>
+</div>
 
 {% endblock %}
