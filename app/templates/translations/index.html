@@ -5,13 +5,72 @@
 {% block content %}
 
 <div class="row">
-    <h1 class="mt-4">TRANSLATIONS</h1>
-</div>
-
-<div class="row mt-4">
-    <div class="col-4">
-        <a class="" href="{{ url_for ('translations.create_dataset') }}">Create dataset(file) for translation</a>
+    <!-- ============== Title+Docs ==============   -->
+    <div class="col-3 mt-4">
+        <h3 class="text-center">TRANSLATIONS</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti expedita optio ratione recusandae
+            repudiandae saepe, sequi. A accusantium aliquid animi at commodi cumque exercitationem mollitia optio
+            possimus quas quisquam, suscipit!</p>
+        <a class="mt-4" href="{{ url_for ('translations.create_dataset') }}">Create dataset(file) for translation</a>
     </div>
+
+    <div class="col-1"></div>
+
+    <!-- ============== Table datasets ==============   -->
+    <div class="col-5">
+
+        <table class="table table-striped table-hover caption-top">
+            <caption class="text-center">Datasets</caption>
+
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Language</th>
+                <th class="text-center">Created</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for obj in obj_list %}
+            <tr>
+                <td>{{obj.title}}</td>
+                <td>{{obj.description}}</td>
+                <td>{{obj.language}}</td>
+                <td class="text-center">{{obj.creation_date}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- ============== Table Languages ==============   -->
+    <div class="col-1"></div>
+    <div class="col-2">
+        <table class="table table-striped table-hover caption-top">
+            <caption class="text-center">All Languages</caption>
+
+            <thead>
+            <tr>
+                <th>Language</th>
+                <th>Locale</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for lang in langs_list %}
+            <tr>
+                <td>{{ lang.lang_title }}</td>
+                <td>{{ lang.lang_locale }}</td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 {% endblock %}
