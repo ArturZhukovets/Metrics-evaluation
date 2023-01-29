@@ -7,8 +7,39 @@
 {% block content %}
 
 <div class="row mt-4">
-    <h1>Creation form here</h1>
 
+    <div class="col-6">
+    <h2 class="text-center text-secondary">Create dataset</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.title.label }}
+                {{ form.title(class_='form-control') }}
+            </div>
+
+            <div>
+                {{ form.description.label }}
+                {{ form.description(class_='form-control') }}
+            </div>
+            <div>
+                {{ form.language.label }}
+                {{ form.language(class_='form-control') }}
+            </div>
+            <div>
+                {{ form.file.label }}
+                {{ form.file(class_='form-control') }}
+
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-outline-secondary">Create</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <h2 class="text-center text-secondary">Create language</h2>
+    </div>
 </div>
 
 {% endblock %}
