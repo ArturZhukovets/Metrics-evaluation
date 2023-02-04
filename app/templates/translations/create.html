@@ -7,64 +7,65 @@
 {% block content %}
 
 <div class="row mt-4">
-    <div class="col-6">
+    <div class="col-5">
     <h2 class="text-center text-secondary">Create dataset</h2>
 
+    <!-- ==================== CREATE DATASET ==================== -->
         <form method="post" enctype="multipart/form-data">
             <fieldset class="form-group">
-                {{ form.hidden_tag() }}
+                {{ form_dt.hidden_tag() }}
                 <div class="form-group">
-                    {{ form.title.label }}
+                    {{ form_dt.title.label }}
 
-                    {% if form.title.errors %}
+                    {% if form_dt.title.errors %}
                     <div class="form-invalid">
-                    {% for error in form.title.errors %}
+                    {% for error in form_dt.title.errors %}
                         <span>{{error}}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
 
-                    {{ form.title(class_='form-control') }}
+                    {{ form_dt.title(class_='form-control') }}
                 </div>
 
                 <div class="form-group">
-                    {{ form.description.label }}
+                    {{ form_dt.description.label }}
 
-                    {% if form.description.errors %}
+                    {% if form_dt.description.errors %}
                     <div class="form-invalid">
-                    {% for error in form.description.errors %}
+                    {% for error in form_dt.description.errors %}
                         <span>{{error}}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
 
-                    {{ form.description(class_='form-control') }}
+                    {{ form_dt.description(class_='form-control') }}
                 </div>
                 <div class="form-group">
-                    {{ form.language.label }}
+                    {{ form_dt.language.label }}
 
-                    {% if form.language.errors %}
+                    {% if form_dt.language.errors %}
                     <div class="form-invalid">
-                        {% for error in form.language.errors %}
+                        {% for error in form_dt.language.errors %}
                         <span>{{error}}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
 
-                    {{ form.language(class_='form-control') }}
+                    {{ form_dt.language(class_='form-control') }}
                 </div>
                 <div class="form-group">
-                    {{ form.file.label }}
+                    {{ form_dt.file.label }}
 
-                    {% if form.file.errors %}
+                    {% if form_dt.file.errors %}
                     <div class="form-invalid">
-                        {% for error in form.file.errors %}
+                        {% for error in form_dt.file.errors %}
                         <span>{{error}}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
 
-                    {{ form.file(class_='form-control') }}
+                    {{ form_dt.file(class_='form-control') }}
 
                 </div>
 
@@ -74,8 +75,12 @@
             </fieldset>
         </form>
     </div>
-    <div class="col-6">
-        <h2 class="text-center text-secondary">Create language</h2>
+
+    <div class="col-2"></div>
+
+    <div class="col-5">
+        <h2 class="text-center text-secondary">Other content here</h2>
+
     </div>
 </div>
 

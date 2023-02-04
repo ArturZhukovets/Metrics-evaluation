@@ -37,7 +37,7 @@
                 <td>{{obj.title}}</td>
                 <td>{{obj.description}}</td>
                 <td>{{obj.language}}</td>
-                <td class="text-center">{{obj.creation_date}}</td>
+                <td class="text-center">{{obj.creation_date.strftime('%d-%m-%Y')}}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -69,6 +69,7 @@
 
             </tbody>
         </table>
+        <a class="mt-4" href="{{ url_for ('translations.create_language') }}">Create language</a>
     </div>
 
 </div>
