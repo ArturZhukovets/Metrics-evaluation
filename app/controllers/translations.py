@@ -1,20 +1,20 @@
 import os
 
-from werkzeug.utils import secure_filename, redirect
+from sqlalchemy.orm import joinedload
 
-from config import UPLOAD_FOLDER, ABSOLUTE_PATH
-from flask import Blueprint, render_template, flash, url_for
+from config import ABSOLUTE_PATH, UPLOAD_FOLDER
+from database import db
+from flask import Blueprint, flash, render_template, url_for
 from forms.translations import CreateDatasetForm
 from models.translation import Language, MonoDataSet
-from database import db
-
+from werkzeug.utils import redirect, secure_filename
 
 translations = Blueprint("translations", __name__, template_folder="templates")
 
 
 @translations.route("/")
 def index():
-    obj_list = MonoDataSet.query.all()  # todo select related with languages
+    obj_list = MonoDataSet.query.options(joinedload(MonoDataSet.language))
     langs_list = Language.query.all()
     return render_template("translations/index.html", obj_list=obj_list, langs_list=langs_list)
 
@@ -26,7 +26,10 @@ def create_dataset():
     if form.validate_on_submit():
         file = form.file.data
         file_path = os.path.join(
-            ABSOLUTE_PATH, UPLOAD_FOLDER, secure_filename(file.filename)
+            ABSOLUTE_PATH,
+            UPLOAD_FOLDER,
+            "dataset",
+            secure_filename(file.filename)
         )
         file.save(file_path)
 

@@ -1,0 +1,14 @@
+/* forms */
+
+.form-group {
+    margin-top: 15px;
+}
+
+
+
+/* errors */
+
+.form-invalid {
+    color: red
+}
+
