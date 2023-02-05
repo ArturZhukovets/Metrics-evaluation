@@ -18,11 +18,10 @@ class MonoDataSet(db.Model):
 
 
 class Language(db.Model):
-    # todo create validation on the locale field
     __tablename__ = "language"
     id = db.Column(db.Integer, primary_key=True)
     lang_title = db.Column(db.String(30), nullable=False)
-    lang_locale = db.Column(db.String(5), nullable=False)
+    lang_locale = db.Column(db.String(10), nullable=False)
     # datasets = db.relationship('MonoDataSet', backref="language")
 
     def __repr__(self) -> str:

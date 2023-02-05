@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Create Language {% endblock%}
+
+
+{% block content %}
+
+
+<div class="row mt-4">
+
+  <div class="col-5">
+  <h2 class="text-center text-secondary">Create Language</h2>
+   <!-- ==================== CREATE LANGUAGE ==================== -->
+        <form method="post" action="{{ url_for('translations.create_language') }}">
+            <fieldset class="form-group">
+                {{ form_lang.hidden_tag() }}
+                <div class="form-group">
+                    {{ form_lang.title.label }}
+
+                    {% if form_lang.title.errors %}
+                    <div class="form-invalid">
+                    {% for error in form_lang.title.errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {{ form_lang.title(class_='form-control') }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_lang.locale.label }}
+
+                    {% if form_lang.locale.errors %}
+                    <div class="form-invalid">
+                    {% for error in form_lang.locale.errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {{ form_lang.locale(class_='form-control') }}
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-outline-secondary">Create</button>
+                </div>
+
+            </fieldset>
+        </form>
+  </div>
+</div>
+
+
+
+{% endblock %}
