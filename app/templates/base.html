@@ -27,6 +27,23 @@
             </div>
         </div>
 
+    <!-- ================== FLASH MESSAGES ===================== -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="col-2"></div>
+
+                <div class="flashes col-8 mt-2">
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}} text-center" role="alert">
+                        <b>{{ message }}</b>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-2"></div>
+            {% endif %}
+        {% endwith %}
+
         <div class="col-1"></div>
 
 
