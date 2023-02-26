@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Detail dataset - {{ dataset.title }} {% endblock %}
+
+
+{% block content %}
+<div class="row">
+     <table class="table table-striped table-hover caption-top">
+            <caption class="text-center">{{ dataset.title }}</caption>
+
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Line phrase</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for index, line in page_obj %}
+            <tr>
+                <td>{{index}}</td>
+                <td>{{line}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <!-- ===================== PAGINATOR =====================  -->
+    <p>Page {{ paginator.page }}</p>
+
+    {% if paginator.is_has_next() %}
+    <p><a href="?page={{ paginator.next_page() }}">Next</a></p>
+    {% endif %}
+
+    {% if paginator.is_has_prev() %}
+    <p><a href="?page={{ paginator.prev_page() }}">Prev</a></p>
+    {% endif %}
+</div>
+
+
+{% endblock %}
