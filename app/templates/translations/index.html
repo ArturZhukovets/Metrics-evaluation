@@ -34,7 +34,7 @@
             <tbody>
             {% for obj in obj_list %}
             <tr>
-                <td>{{obj.title}}</td>
+                <td><a href="{{ url_for('translations.detail_dataset', dataset_id=obj.id) }}">{{obj.title}}</a></td>
                 <td>{{obj.description}}</td>
                 <td>{{obj.language}}</td>
                 <td class="text-center">{{obj.creation_date.strftime('%d-%m-%Y')}}</td>

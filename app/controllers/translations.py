@@ -1,11 +1,15 @@
 from database import db
-from flask import Blueprint, flash, render_template, url_for
+from flask import Blueprint, flash, render_template, url_for, request
 from forms.translations import CreateDatasetForm, CreateLanguageForm
 from models.translation import Language, MonoDataSet
 from services.create_file import create_file
 from sqlalchemy.orm import joinedload
+
+from services.file_paginator import FilePaginator
 from validations.exceptions import ValidationError
 from werkzeug.utils import redirect
+from services.file_service import FileService
+
 
 translations = Blueprint("translations", __name__, template_folder="templates")
 
@@ -37,7 +41,7 @@ def create_dataset():
                 title=form_dt.title.data,
                 description=form_dt.description.data,
                 file=file_path,
-                language=Language.query.filter(Language.lang_title == form_dt.language.data).first()
+                language=language
             )
             db.session.add(dataset)
             db.session.commit()
@@ -50,6 +54,26 @@ def create_dataset():
             return redirect(url_for("translations.index"))
 
     return render_template("translations/create.html", form_dt=form_dt)
+
+
+@translations.route("/detail-dataset/<int:dataset_id>", methods=["GET"])
+def detail_dataset(dataset_id: int):
+    dataset = MonoDataSet.query.get(dataset_id)
+    file = FileService(dataset.file)
+    page = request.args.get('page', 1)
+    paginator = FilePaginator(20, request, file, page)
+
+    return render_template(
+        "translations/detail_dataset.html",
+        dataset=dataset,
+        page_obj=paginator.get_page_obj(),
+        paginator=paginator
+
+    )
+
+
+def delete_dataset():
+    pass
 
 
 # ============================================================ LANGUAGE |
