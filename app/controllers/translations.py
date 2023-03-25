@@ -6,6 +6,7 @@ from services.create_file import create_file
 from sqlalchemy.orm import joinedload
 
 from services.file_paginator import FilePaginator
+from services.translations_utils.sync_with_database import delete_dataset_file
 from validations.exceptions import ValidationError
 from werkzeug.utils import redirect
 from services.file_service import FileService
@@ -72,8 +73,21 @@ def detail_dataset(dataset_id: int):
     )
 
 
-def delete_dataset():
-    pass
+@translations.route("/delete-dataset/<int:dataset_id>", methods=["GET"])
+def delete_dataset(dataset_id: int):
+    dataset = MonoDataSet.query.get(dataset_id)
+    if not dataset:
+        flash(f"Such dataset is not exist. ID: {dataset_id}", category="error")
+        return redirect(url_for("not_found"), code=301)
+    try:
+        delete_dataset_file(dataset.filepath)
+        flash(f"Dataset {dataset.title} Successfully deleted", category="success")
+    except (OSError, FileNotFoundError) as ex:
+        flash(str(ex), category="error")
+    finally:
+        db.session.delete(dataset)
+        db.session.commit()
+        return redirect(url_for("translations.index"))
 
 
 # ============================================================ LANGUAGE |

@@ -1,15 +1,22 @@
-version: 3.7"
-
+version: '3.8'
 services:
-  db:
-    image: postgres:14.0-alpine
-    container_name: metrics_evaluation_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - "5430:5432"
-    env_file:
-      - "db.env"
+    app:
+        container_name: flask_metrics
+        image: "flask-metrics"
+        ports:
+            - "5000:5000"
+        command: python3 /app/main.py 0.0.0.0
+        env_file:
+            - .env
+        networks:
+            - db_docker_metrics_db
 
-volumes:
-  postgres_data:
+networks:
+    db_docker_metrics_db:
+        external: true
+
+#networks:
+#    default:
+#        name: db_docker_metrics_db
+#        external: true
+

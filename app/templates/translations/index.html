@@ -28,6 +28,7 @@
                 <th>Description</th>
                 <th>Language</th>
                 <th class="text-center">Created</th>
+                <th>Delete</th>
             </tr>
             </thead>
 
@@ -38,6 +39,7 @@
                 <td>{{obj.description}}</td>
                 <td>{{obj.language}}</td>
                 <td class="text-center">{{obj.creation_date.strftime('%d-%m-%Y')}}</td>
+                <td class="text-center"><a href="{{ url_for('translations.delete_dataset', dataset_id=obj.id)}}">X</a></td>
             </tr>
             {% endfor %}
             </tbody>

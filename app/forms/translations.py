@@ -8,7 +8,7 @@ class CreateDatasetForm(FlaskForm):
         "Title",
         validators=[validators.Length(min=1, max=50)]
     )
-    description = TextAreaField("Description", validators=[validators.DataRequired()])
+    description = TextAreaField("Description")
     language = SelectField("Language", validators=[validators.DataRequired()])
     file = FileField("File", validators=[validators.DataRequired(), FileLengthValidator()])
 

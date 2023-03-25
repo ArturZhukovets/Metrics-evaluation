@@ -16,6 +16,10 @@ class MonoDataSet(db.Model):
     def __repr__(self) -> str:
         return str(self.title)
 
+    @property
+    def filepath(self) -> str:
+        return self.file
+
 
 class Language(db.Model):
     __tablename__ = "language"

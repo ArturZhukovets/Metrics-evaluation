@@ -1,0 +1,26 @@
+version: 3.7"
+
+services:
+  db:
+    image: postgres:14.0-alpine
+    container_name: metrics_evaluation_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_DB: "admin"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+#    env_file:
+#      - "db.env"
+    networks:
+      - metrics_db
+
+volumes:
+  postgres_data:
+
+networks:
+  metrics_db:
+    driver: bridge
+
