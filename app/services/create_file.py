@@ -25,7 +25,7 @@ def create_file(file: FileStorage, lang: Language) -> str:
     return file_path
 
 
-def file_name_preprocessing(file_name: str, lang: Language):
+def file_name_preprocessing(file_name: str, lang: Language) -> str:
     while "." in file_name:
         file_name = os.path.splitext(file_name)[0]
 

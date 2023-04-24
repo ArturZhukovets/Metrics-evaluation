@@ -20,6 +20,7 @@ class FileService:
         return counter
 
     def get_chunk(self, start: int, stop: int) -> list[tuple[int, str]]:
+        """Function for pagination"""
         chunk = []
         for index, line in enumerate(self.readline(), 1):
             if index >= start + 1:

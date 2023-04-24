@@ -24,3 +24,4 @@ htmlcov/
 .coverage.*
 *,cover
 app/static/files/
+app/media

@@ -7,33 +7,32 @@
 <div class="row">
   <h3 class="text-secondary">Include metrics</h3>
     <div class="col-4">
-      <p>{{config.evaluate_metrics}}</p>
 
       <form method="post" action="{{ url_for('metrics.metrics_config_update')}}">
 
         <fieldset class="form-group">
           {{ form.hidden_tag() }}
-          <div class="form-group">
+          <div class="form-group" id="bleu">
             {{ form.bleu.label }}
             {{ form.bleu(class='form-check-input') }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="bert">
             {{ form.bert.label }}
             {{ form.bert(class='form-check-input') }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="comet">
             {{ form.comet.label }}
             {{ form.comet(class='form-check-input') }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="ter">
             {{ form.ter.label }}
             {{ form.ter(class='form-check-input') }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group" id="chrf">
             {{ form.chrf.label }}
             {{ form.chrf(class='form-check-input') }}
           </div>
